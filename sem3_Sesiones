@@ -1,0 +1,33 @@
+<?php
+/*
+  LAs sesiones es un poco de datos almacenados, la mayoria de las veces en el servidor web.
+  Las solicitudes pueden ser GET o POST estos pueden venir de formularios
+  Las sesiones son otra super globales
+  Como implementamos y utilizamos las sesiones
+  La sesion es solo un lugar para almacenar datos, un lugar bidireccional para almacenar datos
+  Se comienza la sesion session_start, si la cookie no existe, crea la sesion, una sesion vacia establece la cookie.
+  Si la cookie existe, vuelve a asociar la sesio anterior.
+  Una vez terminado dependiendo de las 2 cosas anteriores, se puede usar $_SESSION
+  La sesion se ESTABLECE DESPUES DE LLAMAR A SESSION_START
+  Se pueden borrar todas las claves con la destruccion de sesión.
+*/
+//NOTA: No se puede tenerniguna salida antes de esto.
+session_start();
+if(!isset($_SESSION['pizza']) ){
+	echo ("<p>La sesion esta vacia</p>\n");
+	$_SESSION['pizza'] = 0;
+}else if(isset($_SESSION['pizza'] < 3){
+	$_SESSION['pizza'] = $_SESSION['pizza'] + 1;
+	echo ("<p>Agrego uno ... </p>\n");
+}else{
+	session_destroy();
+	session_start();
+	echo("<p>Session Reiniciada</p>\n");
+}
+?>
+<p><a href="sem3_sesiones.php">Click Me!</a></p>
+<p>nuestri ID se sesion es: <?php  echo(session_id()); ?></p>
+<pre>
+	<?php print_r($_SESSION); ?>	
+</pre>
+
