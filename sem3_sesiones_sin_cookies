@@ -1,0 +1,38 @@
+<?php
+/*
+Sesiones que no requeiren cookies
+Hay fragmentos magicos
+*/
+//Decir que no usaremos cookies para la sesion
+//Esto dice que no vamos a usar cookies para nuestras sesiones y vamos
+//transformar la salida automaticamente
+ini_set('session.use_cookies', '0');
+ini_set('session.use_only_cookies', 0);
+ini_set('session.use_trans_sid', 1);
+session_start();
+
+?>
+<p><b>No cookies for you !</b></p>
+<?php 
+if(! isset($_SESSION['value'])){
+	echo ("<p>La sesion esta vacia</p>\n");
+	$_SESSION['value'] = 0;
+}elseif($_SESSION['value'] < 3){
+	$_SESSION['value'] = $_SESSION['value'] + 1;
+	echo ("<p>Added one \$_SESSION['value']=".$_SESSION['value']."</p>\n");
+}else{
+	session_destroy();
+	session_start();
+	echo ("<p>Restablecer Sesion</p>");
+}
+?>
+<p><a href="sesion_sin_cokies.php">Click en la etiqueta de anclaje !</a></p>
+<p>
+	<form action="sesion_sin_cokies.php" method="post">
+		<input type="submit" name="click" value="Click this Submit Button !">
+	</form>
+	<p>Our Session ID is: <?php echo(session_id()); ?></p>
+	<pre>
+		<?php print_r($_SESSION); ?>	
+	</pre>
+
