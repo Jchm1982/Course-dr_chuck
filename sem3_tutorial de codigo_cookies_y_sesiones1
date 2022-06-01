@@ -1,0 +1,17 @@
+
+<?php
+
+//COOKIES
+	if(!isset($_COOKIE['zap'])){
+		setcookie('zap','42',time()+3600);//Esto se hace cuando la cokkie no esta configurada
+	}
+?>
+<pre>
+	<?php print_r($_COOKIE); ?>	
+</pre>
+<p><a href="tutorial de codigo_cookies_y_sesiones.php">Click Aqui</a> or press Refresh</p>
+<!--Las SESIONES no son lo mismo que las cookies
+en php cuandi se quiere utilizar sesiones se comienza con ***session_start**
+-->
+
+
