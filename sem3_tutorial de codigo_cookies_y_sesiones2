@@ -1,0 +1,25 @@
+<?php
+//NOTA: No se puede tenerniguna salida antes de esto.
+/*
+session_star hace varias cosas, si no hay ninguna cookie de sesion y no hay ninguna cookie de sesion aqui en el navegador.
+Se crea una super global $_SESSION, y es magica ya que Privien del servidor en cada ciclo de respuesta de solicitud,por lo que PEDE PONER DATOS EN EL Y LUEGO PUEDE SACAR LOS DATOS DE EL
+*/
+session_start();
+if(!isset($_SESSION['pizza']) ){
+	echo ("<p>La sesion esta vacia</p>\n");
+	$_SESSION['pizza'] = 0;
+}elseif($_SESSION['pizza'] < 3){
+	$_SESSION['pizza'] = $_SESSION['pizza'] + 1;
+	echo ("<p>Agrego uno ... </p>\n");
+}else{
+	session_destroy();
+	session_start();
+	echo("<p>Session Reiniciada</p>\n");
+}
+?>
+<p><a href="tutorial de codigo_cookies_y_sesiones2.php">Click Me!</a></p>
+<p>Nuestro ID se sesion es: <?php  echo(session_id()); ?></p>
+<pre>
+	<?php print_r($_SESSION); ?>	
+</pre>
+
